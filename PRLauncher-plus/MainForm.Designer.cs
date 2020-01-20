@@ -227,7 +227,7 @@
             // 
             this.execRadio2.BackColor = System.Drawing.SystemColors.Control;
             this.execRadio2.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.execRadio2.Location = new System.Drawing.Point(0, 5);
+            this.execRadio2.Location = new System.Drawing.Point(97, 5);
             this.execRadio2.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
             this.execRadio2.Name = "execRadio2";
             this.execRadio2.Size = new System.Drawing.Size(85, 18);
@@ -240,7 +240,7 @@
             // execRadio1
             // 
             this.execRadio1.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.execRadio1.Location = new System.Drawing.Point(97, 5);
+            this.execRadio1.Location = new System.Drawing.Point(0, 5);
             this.execRadio1.Margin = new System.Windows.Forms.Padding(20, 5, 0, 5);
             this.execRadio1.Name = "execRadio1";
             this.execRadio1.Size = new System.Drawing.Size(85, 18);
