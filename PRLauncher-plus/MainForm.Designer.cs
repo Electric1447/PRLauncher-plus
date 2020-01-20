@@ -33,24 +33,24 @@
             this.diffComboBox = new System.Windows.Forms.ComboBox();
             this.argTextBox = new System.Windows.Forms.TextBox();
             this.levelGroup = new System.Windows.Forms.GroupBox();
+            this.levelComboBox = new System.Windows.Forms.ComboBox();
             this.levelTextBox = new System.Windows.Forms.TextBox();
             this.dirGroup = new System.Windows.Forms.GroupBox();
-            this.execRadio1 = new System.Windows.Forms.RadioButton();
-            this.execRadio2 = new System.Windows.Forms.RadioButton();
-            this.levelComboBox = new System.Windows.Forms.ComboBox();
-            this.launchGroup = new System.Windows.Forms.GroupBox();
-            this.compLabel = new System.Windows.Forms.Label();
-            this.diffLabel = new System.Windows.Forms.Label();
-            this.argLabel = new System.Windows.Forms.Label();
-            this.iwadLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.execRadio2 = new System.Windows.Forms.RadioButton();
+            this.execRadio1 = new System.Windows.Forms.RadioButton();
+            this.launchGroup = new System.Windows.Forms.GroupBox();
+            this.iwadLabel = new System.Windows.Forms.Label();
+            this.argLabel = new System.Windows.Forms.Label();
+            this.diffLabel = new System.Windows.Forms.Label();
+            this.compLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.banner)).BeginInit();
             this.levelGroup.SuspendLayout();
             this.dirGroup.SuspendLayout();
-            this.launchGroup.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.launchGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // dirButton
@@ -164,6 +164,17 @@
             this.levelGroup.TabStop = false;
             this.levelGroup.Text = "Enter Level:";
             // 
+            // levelComboBox
+            // 
+            this.levelComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.levelComboBox.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.levelComboBox.FormattingEnabled = true;
+            this.levelComboBox.Location = new System.Drawing.Point(222, 28);
+            this.levelComboBox.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.levelComboBox.Name = "levelComboBox";
+            this.levelComboBox.Size = new System.Drawing.Size(194, 22);
+            this.levelComboBox.TabIndex = 2;
+            // 
             // levelTextBox
             // 
             this.levelTextBox.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -190,108 +201,6 @@
             this.dirGroup.TabStop = false;
             this.dirGroup.Text = "PRBoom+ Directory Settings:";
             // 
-            // execRadio1
-            // 
-            this.execRadio1.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.execRadio1.Location = new System.Drawing.Point(97, 5);
-            this.execRadio1.Margin = new System.Windows.Forms.Padding(20, 5, 0, 5);
-            this.execRadio1.Name = "execRadio1";
-            this.execRadio1.Size = new System.Drawing.Size(85, 18);
-            this.execRadio1.TabIndex = 13;
-            this.execRadio1.TabStop = true;
-            this.execRadio1.Text = "PRBoom+";
-            this.execRadio1.UseVisualStyleBackColor = true;
-            this.execRadio1.CheckedChanged += new System.EventHandler(this.ExecutableChanged);
-            // 
-            // execRadio2
-            // 
-            this.execRadio2.BackColor = System.Drawing.SystemColors.Control;
-            this.execRadio2.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.execRadio2.Location = new System.Drawing.Point(0, 5);
-            this.execRadio2.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
-            this.execRadio2.Name = "execRadio2";
-            this.execRadio2.Size = new System.Drawing.Size(85, 18);
-            this.execRadio2.TabIndex = 14;
-            this.execRadio2.TabStop = true;
-            this.execRadio2.Text = "GLBoom+";
-            this.execRadio2.UseVisualStyleBackColor = false;
-            this.execRadio2.CheckedChanged += new System.EventHandler(this.ExecutableChanged);
-            // 
-            // levelComboBox
-            // 
-            this.levelComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.levelComboBox.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.levelComboBox.FormattingEnabled = true;
-            this.levelComboBox.Location = new System.Drawing.Point(222, 28);
-            this.levelComboBox.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.levelComboBox.Name = "levelComboBox";
-            this.levelComboBox.Size = new System.Drawing.Size(194, 22);
-            this.levelComboBox.TabIndex = 2;
-            // 
-            // launchGroup
-            // 
-            this.launchGroup.Controls.Add(this.iwadComboBox);
-            this.launchGroup.Controls.Add(this.compComboBox);
-            this.launchGroup.Controls.Add(this.diffComboBox);
-            this.launchGroup.Controls.Add(this.argTextBox);
-            this.launchGroup.Controls.Add(this.iwadLabel);
-            this.launchGroup.Controls.Add(this.argLabel);
-            this.launchGroup.Controls.Add(this.diffLabel);
-            this.launchGroup.Controls.Add(this.compLabel);
-            this.launchGroup.Font = new System.Drawing.Font("Verdana", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.launchGroup.Location = new System.Drawing.Point(20, 232);
-            this.launchGroup.Margin = new System.Windows.Forms.Padding(0, 0, 0, 20);
-            this.launchGroup.Name = "launchGroup";
-            this.launchGroup.Padding = new System.Windows.Forms.Padding(8);
-            this.launchGroup.Size = new System.Drawing.Size(424, 192);
-            this.launchGroup.TabIndex = 12;
-            this.launchGroup.TabStop = false;
-            this.launchGroup.Text = "Launch Arguments:";
-            // 
-            // compLabel
-            // 
-            this.compLabel.AutoSize = true;
-            this.compLabel.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.compLabel.Location = new System.Drawing.Point(8, 72);
-            this.compLabel.Margin = new System.Windows.Forms.Padding(0, 2, 16, 23);
-            this.compLabel.Name = "compLabel";
-            this.compLabel.Size = new System.Drawing.Size(144, 17);
-            this.compLabel.TabIndex = 1;
-            this.compLabel.Text = "Compatibility Level:";
-            // 
-            // diffLabel
-            // 
-            this.diffLabel.AutoSize = true;
-            this.diffLabel.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.diffLabel.Location = new System.Drawing.Point(8, 114);
-            this.diffLabel.Margin = new System.Windows.Forms.Padding(0, 2, 16, 23);
-            this.diffLabel.Name = "diffLabel";
-            this.diffLabel.Size = new System.Drawing.Size(74, 17);
-            this.diffLabel.TabIndex = 3;
-            this.diffLabel.Text = "Difficulty:";
-            // 
-            // argLabel
-            // 
-            this.argLabel.AutoSize = true;
-            this.argLabel.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.argLabel.Location = new System.Drawing.Point(8, 156);
-            this.argLabel.Margin = new System.Windows.Forms.Padding(0, 2, 16, 23);
-            this.argLabel.Name = "argLabel";
-            this.argLabel.Size = new System.Drawing.Size(166, 17);
-            this.argLabel.TabIndex = 5;
-            this.argLabel.Text = "Additional Arguments:";
-            // 
-            // iwadLabel
-            // 
-            this.iwadLabel.AutoSize = true;
-            this.iwadLabel.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.iwadLabel.Location = new System.Drawing.Point(8, 30);
-            this.iwadLabel.Margin = new System.Windows.Forms.Padding(0, 2, 16, 23);
-            this.iwadLabel.Name = "iwadLabel";
-            this.iwadLabel.Size = new System.Drawing.Size(55, 17);
-            this.iwadLabel.TabIndex = 7;
-            this.iwadLabel.Text = "IWAD:";
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.panel2);
@@ -314,6 +223,97 @@
             this.panel2.Size = new System.Drawing.Size(182, 28);
             this.panel2.TabIndex = 13;
             // 
+            // execRadio2
+            // 
+            this.execRadio2.BackColor = System.Drawing.SystemColors.Control;
+            this.execRadio2.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.execRadio2.Location = new System.Drawing.Point(0, 5);
+            this.execRadio2.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this.execRadio2.Name = "execRadio2";
+            this.execRadio2.Size = new System.Drawing.Size(85, 18);
+            this.execRadio2.TabIndex = 14;
+            this.execRadio2.TabStop = true;
+            this.execRadio2.Text = "GLBoom+";
+            this.execRadio2.UseVisualStyleBackColor = false;
+            this.execRadio2.CheckedChanged += new System.EventHandler(this.ExecutableChanged);
+            // 
+            // execRadio1
+            // 
+            this.execRadio1.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.execRadio1.Location = new System.Drawing.Point(97, 5);
+            this.execRadio1.Margin = new System.Windows.Forms.Padding(20, 5, 0, 5);
+            this.execRadio1.Name = "execRadio1";
+            this.execRadio1.Size = new System.Drawing.Size(85, 18);
+            this.execRadio1.TabIndex = 13;
+            this.execRadio1.TabStop = true;
+            this.execRadio1.Text = "PRBoom+";
+            this.execRadio1.UseVisualStyleBackColor = true;
+            this.execRadio1.CheckedChanged += new System.EventHandler(this.ExecutableChanged);
+            // 
+            // launchGroup
+            // 
+            this.launchGroup.Controls.Add(this.iwadComboBox);
+            this.launchGroup.Controls.Add(this.compComboBox);
+            this.launchGroup.Controls.Add(this.diffComboBox);
+            this.launchGroup.Controls.Add(this.argTextBox);
+            this.launchGroup.Controls.Add(this.iwadLabel);
+            this.launchGroup.Controls.Add(this.argLabel);
+            this.launchGroup.Controls.Add(this.diffLabel);
+            this.launchGroup.Controls.Add(this.compLabel);
+            this.launchGroup.Font = new System.Drawing.Font("Verdana", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.launchGroup.Location = new System.Drawing.Point(20, 232);
+            this.launchGroup.Margin = new System.Windows.Forms.Padding(0, 0, 0, 20);
+            this.launchGroup.Name = "launchGroup";
+            this.launchGroup.Padding = new System.Windows.Forms.Padding(8);
+            this.launchGroup.Size = new System.Drawing.Size(424, 192);
+            this.launchGroup.TabIndex = 12;
+            this.launchGroup.TabStop = false;
+            this.launchGroup.Text = "Launch Arguments:";
+            // 
+            // iwadLabel
+            // 
+            this.iwadLabel.AutoSize = true;
+            this.iwadLabel.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.iwadLabel.Location = new System.Drawing.Point(8, 30);
+            this.iwadLabel.Margin = new System.Windows.Forms.Padding(0, 2, 16, 23);
+            this.iwadLabel.Name = "iwadLabel";
+            this.iwadLabel.Size = new System.Drawing.Size(55, 17);
+            this.iwadLabel.TabIndex = 7;
+            this.iwadLabel.Text = "IWAD:";
+            // 
+            // argLabel
+            // 
+            this.argLabel.AutoSize = true;
+            this.argLabel.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.argLabel.Location = new System.Drawing.Point(8, 156);
+            this.argLabel.Margin = new System.Windows.Forms.Padding(0, 2, 16, 23);
+            this.argLabel.Name = "argLabel";
+            this.argLabel.Size = new System.Drawing.Size(166, 17);
+            this.argLabel.TabIndex = 5;
+            this.argLabel.Text = "Additional Arguments:";
+            // 
+            // diffLabel
+            // 
+            this.diffLabel.AutoSize = true;
+            this.diffLabel.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.diffLabel.Location = new System.Drawing.Point(8, 114);
+            this.diffLabel.Margin = new System.Windows.Forms.Padding(0, 2, 16, 23);
+            this.diffLabel.Name = "diffLabel";
+            this.diffLabel.Size = new System.Drawing.Size(74, 17);
+            this.diffLabel.TabIndex = 3;
+            this.diffLabel.Text = "Difficulty:";
+            // 
+            // compLabel
+            // 
+            this.compLabel.AutoSize = true;
+            this.compLabel.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.compLabel.Location = new System.Drawing.Point(8, 72);
+            this.compLabel.Margin = new System.Windows.Forms.Padding(0, 2, 16, 23);
+            this.compLabel.Name = "compLabel";
+            this.compLabel.Size = new System.Drawing.Size(144, 17);
+            this.compLabel.TabIndex = 1;
+            this.compLabel.Text = "Compatibility Level:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -329,16 +329,16 @@
             this.MinimumSize = new System.Drawing.Size(480, 640);
             this.Name = "MainForm";
             this.Padding = new System.Windows.Forms.Padding(20);
-            this.Text = "PRLauncher+ 0.5.0wf";
+            this.Text = "PRLauncher+ 0.5.0";
             ((System.ComponentModel.ISupportInitialize)(this.banner)).EndInit();
             this.levelGroup.ResumeLayout(false);
             this.levelGroup.PerformLayout();
             this.dirGroup.ResumeLayout(false);
             this.dirGroup.PerformLayout();
-            this.launchGroup.ResumeLayout(false);
-            this.launchGroup.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.launchGroup.ResumeLayout(false);
+            this.launchGroup.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
