@@ -5,12 +5,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 
-namespace PRLauncher_plus {
+namespace PRLauncher_plus.Forms {
     public partial class MainForm : Form {
-
-        WadList iwads = new WadList();
-
-        string folderPath = "";
 
         static string[] prboomExec = new string[] { "prboom-plus.exe", "glboom-plus.exe" };
         static string[] prboomExecNames = new string[] { "PRBoom+ (" + prboomExec[0] + ")", "GLBoom+ (" + prboomExec[1] + ")" };
@@ -21,37 +17,64 @@ namespace PRLauncher_plus {
 
         static string[] difficulties = new string[] { "None (select ingame)", "I'm too young to die", "Hey, not too rough", "Hurt me plenty", "Ultra-Violence", "Nightmare!" };
 
-        int cExecutable = 0, cIWad = 0, cComplevel = 0, cDifficulty = 0;
+        WadList iwads = new WadList();
 
-        public MainForm() {
+        string folderPath = "", cWarp = "";
+        int cExecutable = 0, cIWad = 0, cComplevel = 0, cDifficulty = 0, cWarpIndex = 0;
+
+        public MainForm () {
             InitializeComponent();
 
+            folderPath = Settings.Default.folderPathPref;
+            cWarp = Settings.Default.warpPref;
             cExecutable = Settings.Default.cExecutablePref;
             cIWad = Settings.Default.cIWadPref;
             cComplevel = Settings.Default.cComplevelPref;
             cDifficulty = Settings.Default.cDifficultyPref;
-            folderPath = Settings.Default.folderPathPref;
+            cWarpIndex = Settings.Default.cWarpIndexPref;
 
             dirTextBox.Text = folderPath;
-            levelTextBox.Text = Settings.Default.warpPref;
+            argTextBox.Text = Settings.Default.argPref;
+
+            // Checks if PRLauncher-plus.exe is in the PRBoom+'s directory.
+            // And if so, it changes the folder path to be PRLauncher-plus.exe's directory.
+            if (folderPath.Equals("") && File.Exists(Application.StartupPath + @"\prboom-plus.exe")) {
+                folderPath = Application.StartupPath;
+                Settings.Default.folderPathPref = folderPath;
+                dirTextBox.Text = folderPath;
+                Settings.Default.Save();
+            }
 
             compComboBox.Items.AddRange(complevels);
             compComboBox.SelectedIndex = cComplevel;
             diffComboBox.Items.AddRange(difficulties);
             diffComboBox.SelectedIndex = cDifficulty;
 
-            if (folderPath != "")
+            if (!folderPath.Equals(""))
                 iwads.DetectWads(folderPath);
-
-            RefreshLevelList();
-
+           
             execCheckBox.Checked = cExecutable == 1;
+        }
 
+        private void Exit (object sender, FormClosingEventArgs e) {
+            SaveSettings();
+        }
+
+        private void ExitTSMI (object sender, EventArgs e) {
+            DialogResult result = MessageBox.Show("Are you sure you want to close PRLauncher+ ?", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+                Application.Exit();
         }
 
         private void Run (object sender, EventArgs e) {
 
-            string diff_temp = "", warp_temp = levelTextBox.Text;
+            if (cWarpIndex == 0)
+                cWarp = levelTextBox.Text;
+            else
+                cWarp = Levels.ParseLevel(iwads.GetWadsFilename()[cIWad], cWarpIndex - 1);
+
+            string diff_temp = "", warp_temp = cWarp;
 
             if (cDifficulty != 0)
                 diff_temp = " -skill " + cDifficulty;
@@ -59,17 +82,20 @@ namespace PRLauncher_plus {
             if (warp_temp != "")
                 warp_temp = " -warp " + warp_temp;
 
-            if (!folderPath.Equals("")) {
-                try {
+            try {
+                if (folderPath.Equals("")) {
+                    MessageBox.Show("Please insert the path to your PRBoom+ folder", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                } else if (!File.Exists(folderPath + @"\" + prboomExec[cExecutable])) {
+                    MessageBox.Show("Can't find " + prboomExec[cExecutable], "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                } else {
                     ProcessStartInfo startInfo = new ProcessStartInfo();
                     startInfo.FileName = folderPath + @"\" + prboomExec[cExecutable];
                     startInfo.Arguments = " -iwad " + iwads.GetWadsFilename()[cIWad] + " -complevel " + (cComplevel - 1) + warp_temp + " " + diff_temp + " " + argTextBox.Text;
                     Process.Start(startInfo);
-                } catch { Console.WriteLine("ERROR: can't open executable"); }
-            }
+                }
+            } catch { Console.WriteLine("Error launching PRBoom+/GLBoom+"); }
 
-            Settings.Default.warpPref = levelTextBox.Text;
-            Settings.Default.Save();
+            SaveSettings();
         }
 
         private void ChooseDirectoryButton (object sender, EventArgs e) {
@@ -119,15 +145,34 @@ namespace PRLauncher_plus {
 
             Settings.Default.cExecutablePref = cExecutable;
             Settings.Default.Save();
+        }
 
+        private void SaveCurrentConfig (object sender, EventArgs e) {
+            SaveSettings();
+        }
+
+        private void ResetConfigPrompte (object sender, EventArgs e) {
+            DialogResult result = MessageBox.Show("Are you sure you want to reset the current configaration?", "Are you sure?",
+                MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3);
+
+            if (result == DialogResult.Yes) {
+                Settings.Default.Reset();
+                Application.Restart();
+            }
         }
 
         private void iwadCB_IndexChanged (object sender, EventArgs e) {
             cIWad = iwadComboBox.SelectedIndex;
+
+            // Retrieving saved custom warp prefs needs to be run BEFORE RefreshLevelList().
+            // Otherwise it wouldn't retrive the saved custom warp prefs.
+            if (cWarpIndex == 0)
+                levelTextBox.Text = cWarp;
+
             RefreshLevelList();
             Settings.Default.cIWadPref = cIWad;
             Settings.Default.Save();
-        } 
+        }
 
         private void compCB_IndexChanged (object sender, EventArgs e) {
             cComplevel = compComboBox.SelectedIndex;
@@ -141,11 +186,47 @@ namespace PRLauncher_plus {
             Settings.Default.Save();
         }
 
+        private void levelCB_IndexChanged (object sender, EventArgs e) {
+            levelTextBox.Enabled = (levelComboBox.SelectedIndex == 0);
+
+            cWarpIndex = levelComboBox.SelectedIndex;
+
+            if (cWarpIndex == 0)
+                cWarp = levelTextBox.Text;
+            else
+                cWarp = Levels.ParseLevel(iwads.GetWadsFilename()[cIWad], cWarpIndex - 1);
+
+            Settings.Default.cWarpIndexPref = cWarpIndex;
+            Settings.Default.warpPref = cWarp;
+            Settings.Default.Save();
+        }
+
         private void RefreshLevelList () {
+
             levelComboBox.Items.Clear();
             levelComboBox.Items.Add("CUSTOM");
+
             if (iwads.IsKnown(cIWad) && folderPath != "")
                 levelComboBox.Items.AddRange(Levels.GetLevelList(iwads.GetWadsFilename()[cIWad]));
+
+            if (cWarpIndex >= levelComboBox.Items.Count)
+                cWarpIndex = 0;
+
+            levelComboBox.SelectedIndex = cWarpIndex;
         }
+
+        private void SaveSettings () {
+
+            if (cWarpIndex == 0)
+                cWarp = levelTextBox.Text;
+            else
+                cWarp = Levels.ParseLevel(iwads.GetWadsFilename()[cIWad], cWarpIndex - 1);
+
+            Settings.Default.warpPref = cWarp;
+            Settings.Default.argPref = argTextBox.Text;
+            Settings.Default.Save();
+            Console.WriteLine("Settings have been saved!");
+        }
+
     }
 }

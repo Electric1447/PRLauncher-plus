@@ -82,6 +82,7 @@ namespace PRLauncher_plus {
             wadsTitle = wt;
         }
 
+        // Returns the wad full title (title + filename)
         public string[] GetWadsFullTitle () {
 
             string[] str = new string[wadsFilename.Length];
@@ -96,6 +97,7 @@ namespace PRLauncher_plus {
             return str;
         }
 
+        // Returns if wad is known (in the database)
         public bool IsKnown (int index) {
 
             if (wadsFilename == null)

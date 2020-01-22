@@ -94,5 +94,29 @@ namespace PRLauncher_plus.Properties {
                 this["cDifficultyPref"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int cWarpIndexPref {
+            get {
+                return ((int)(this["cWarpIndexPref"]));
+            }
+            set {
+                this["cWarpIndexPref"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string argPref {
+            get {
+                return ((string)(this["argPref"]));
+            }
+            set {
+                this["argPref"] = value;
+            }
+        }
     }
 }
