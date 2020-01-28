@@ -50,6 +50,7 @@ namespace PRLauncher_plus.Forms {
             execCheckBox.Checked = cExecutable == 1;
 
             iwads.DetectWads(folderPath);
+            RefreshLevelList();
             RefreshDiffList();
         }
 
