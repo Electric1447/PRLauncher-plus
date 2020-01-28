@@ -5,7 +5,7 @@ using System.Windows.Forms;
 namespace PRLauncher_plus {
     static class Program {
 
-        public static readonly string VERSION = "0.6.2";
+        public static readonly string VERSION = "0.6.2.1";
 
         [STAThread]
         static void Main() {

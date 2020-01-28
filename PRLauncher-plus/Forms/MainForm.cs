@@ -47,12 +47,10 @@ namespace PRLauncher_plus.Forms {
             compComboBox.Items.AddRange(complevels);
             compComboBox.SelectedIndex = cComplevel;
 
-            if (!folderPath.Equals(""))
-                iwads.DetectWads(folderPath);
-            else
-                RefreshDiffList();
-           
             execCheckBox.Checked = cExecutable == 1;
+
+            iwads.DetectWads(folderPath);
+            RefreshDiffList();
         }
 
         private void Exit (object sender, FormClosingEventArgs e) {
@@ -133,6 +131,7 @@ namespace PRLauncher_plus.Forms {
                 iwadComboBox.Items.Clear();
             }
 
+            RefreshLevelList();
         }
 
         private void ExecutableChanged (object sender, EventArgs e) {
