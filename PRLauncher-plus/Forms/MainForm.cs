@@ -15,8 +15,6 @@ namespace PRLauncher_plus.Forms {
             "4 - Final Doom's doom2.exe", "5 - DOSDoom", "6 - TASDDOOM", "7 - Boom's compatibility mode", "8 - Boom v2.01", "9 - Boom v2.02", "10 - LxDoom v1.4.x",
             "11 - MBF", "12 - PrBoom v2.03beta", "13 - PrBoom v2.1.0", "14 - PrBoom v2.1.1-2.2.6", "15 - PrBoom v2.3.x", "16 - PrBoom v2.4.0", "17 - Latest PrBoom-plus" };
 
-        static string[] difficulties = new string[] { "None (select ingame)", "I'm too young to die", "Hey, not too rough", "Hurt me plenty", "Ultra-Violence", "Nightmare!" };
-
         WadList iwads = new WadList();
 
         string folderPath = "", cWarp = "";
@@ -48,11 +46,11 @@ namespace PRLauncher_plus.Forms {
 
             compComboBox.Items.AddRange(complevels);
             compComboBox.SelectedIndex = cComplevel;
-            diffComboBox.Items.AddRange(difficulties);
-            diffComboBox.SelectedIndex = cDifficulty;
 
             if (!folderPath.Equals(""))
                 iwads.DetectWads(folderPath);
+            else
+                RefreshDiffList();
            
             execCheckBox.Checked = cExecutable == 1;
         }
@@ -171,6 +169,7 @@ namespace PRLauncher_plus.Forms {
                 levelTextBox.Text = cWarp;
 
             RefreshLevelList();
+            RefreshDiffList();
             Settings.Default.cIWadPref = cIWad;
             Settings.Default.Save();
         }
@@ -216,6 +215,19 @@ namespace PRLauncher_plus.Forms {
             levelComboBox.SelectedIndex = cWarpIndex;
         }
 
+        private void RefreshDiffList () {
+
+            diffComboBox.Items.Clear();
+            diffComboBox.Items.Add("None (select ingame)");
+
+            if (iwads.IsKnown(cIWad) && folderPath != "")
+                diffComboBox.Items.AddRange(Difficulty.GetDifflvlList(iwads.GetWadsFilename()[cIWad]));
+            else
+                diffComboBox.Items.AddRange(Difficulty.GetDifflvlList("doom.wad"));
+
+            diffComboBox.SelectedIndex = cDifficulty;
+        }
+
         private void SaveSettings () {
 
             if (cWarpIndex == 0)
@@ -232,6 +244,11 @@ namespace PRLauncher_plus.Forms {
         private void Goto_About (object sender, EventArgs e) {
             AboutForm af = new AboutForm();
             af.Show();
+        }
+
+        private void Goto_CompHint (object sender, EventArgs e) {
+            CompHintForm chf = new CompHintForm();
+            chf.Show();
         }
 
     }

@@ -6,8 +6,8 @@ namespace PRLauncher_plus {
 
     class WadList {
 
-        private readonly string[] wadsFilenameDB = new string[] { "doom.wad", "doom1.wad", "doomu.wad", "doom2.wad", "plutonia.wad", "tnt.wad"};
-        private readonly string[] wadsTitleDB = new string[] { "Doom / Ultimate Doom", "Doom", "The Ultimate Doom", "Doom II: Hell on Earth", "The Plutonia Experiment", "TNT: Evilution"};
+        private readonly string[] wadsFilenameDB = new string[] { "doom.wad", "doom1.wad", "doomu.wad", "doom2.wad", "plutonia.wad", "tnt.wad", "freedoom1.wad", "freedoom2.wad"};
+        private readonly string[] wadsTitleDB = new string[] { "Doom / Ultimate Doom", "Doom", "The Ultimate Doom", "Doom II: Hell on Earth", "The Plutonia Experiment", "TNT: Evilution", "Freedoom: Phase 1", "Freedoom: Phase 2"};
 
         private string[] wadsFilename;
         private string[] wadsTitle;
