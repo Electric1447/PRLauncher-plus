@@ -4,9 +4,9 @@ using System.Windows.Forms;
 
 namespace PRLauncher_plus {
     static class Program {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
+
+        public static readonly string VERSION = "0.6.1";
+
         [STAThread]
         static void Main() {
             Application.EnableVisualStyles();

@@ -24,6 +24,7 @@ namespace PRLauncher_plus.Forms {
 
         public MainForm () {
             InitializeComponent();
+            Text = "PRLauncher+ " + Program.VERSION;
 
             folderPath = Settings.Default.folderPathPref;
             cWarp = Settings.Default.warpPref;
@@ -226,6 +227,11 @@ namespace PRLauncher_plus.Forms {
             Settings.Default.argPref = argTextBox.Text;
             Settings.Default.Save();
             Console.WriteLine("Settings have been saved!");
+        }
+
+        private void Goto_About (object sender, EventArgs e) {
+            AboutForm af = new AboutForm();
+            af.Show();
         }
 
     }
