@@ -30,9 +30,9 @@ namespace PRLauncher_plus.Objects {
 
             if (wfn.Equals("doom1.wad"))
                 return 0; // Doom 1
-            else if (wfn.Equals("doom.wad") || wfn.Equals("doomu.wad"))
+            else if (wfn.Equals("doom.wad") || wfn.Equals("doomu.wad") || wfn.Equals("freedoom1.wad"))
                 return 1; // Ultimate Doom
-            else if (wfn.Equals("doom2.wad") || wfn.Equals("plutonia.wad") || wfn.Equals("tnt.wad"))
+            else if (wfn.Equals("doom2.wad") || wfn.Equals("plutonia.wad") || wfn.Equals("tnt.wad") || wfn.Equals("freedoom2.wad"))
                 return 2; // Doom II / Final Doom
 
             return -1;

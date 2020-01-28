@@ -28,9 +28,11 @@ namespace PRLauncher_plus.Forms {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.mainTLP = new System.Windows.Forms.TableLayoutPanel();
             this.runButton = new System.Windows.Forms.Button();
+            this.banner = new System.Windows.Forms.PictureBox();
             this.innerTLP = new System.Windows.Forms.TableLayoutPanel();
             this.dirGroup = new System.Windows.Forms.GroupBox();
             this.pathTLP = new System.Windows.Forms.TableLayoutPanel();
+            this.dirButton = new System.Windows.Forms.Button();
             this.dirTextBox = new System.Windows.Forms.TextBox();
             this.execCheckBox = new System.Windows.Forms.CheckBox();
             this.launchGroup = new System.Windows.Forms.GroupBox();
@@ -54,10 +56,6 @@ namespace PRLauncher_plus.Forms {
             this.defaultConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.banner = new System.Windows.Forms.PictureBox();
-            this.dirButton = new System.Windows.Forms.Button();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.videoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.displayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,9 +63,14 @@ namespace PRLauncher_plus.Forms {
             this.demosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playDemoFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recordDemoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.recordingOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.recordingOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.compatibilityHintToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.mainTLP.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.banner)).BeginInit();
             this.innerTLP.SuspendLayout();
             this.dirGroup.SuspendLayout();
             this.pathTLP.SuspendLayout();
@@ -76,7 +79,6 @@ namespace PRLauncher_plus.Forms {
             this.launchTLP2.SuspendLayout();
             this.launchTPL3.SuspendLayout();
             this.mainMenuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.banner)).BeginInit();
             this.SuspendLayout();
             // 
             // mainTLP
@@ -115,6 +117,18 @@ namespace PRLauncher_plus.Forms {
             this.runButton.Text = "Launch";
             this.runButton.UseVisualStyleBackColor = true;
             this.runButton.Click += new System.EventHandler(this.Run);
+            // 
+            // banner
+            // 
+            this.banner.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.banner.Image = global::PRLauncher_plus.Properties.Resources.banner;
+            this.banner.Location = new System.Drawing.Point(57, 34);
+            this.banner.Margin = new System.Windows.Forms.Padding(0);
+            this.banner.Name = "banner";
+            this.banner.Size = new System.Drawing.Size(350, 63);
+            this.banner.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.banner.TabIndex = 2;
+            this.banner.TabStop = false;
             // 
             // innerTLP
             // 
@@ -164,6 +178,19 @@ namespace PRLauncher_plus.Forms {
             this.pathTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.pathTLP.Size = new System.Drawing.Size(416, 36);
             this.pathTLP.TabIndex = 14;
+            // 
+            // dirButton
+            // 
+            this.dirButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dirButton.BackgroundImage = global::PRLauncher_plus.Properties.Resources.folder_icon;
+            this.dirButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.dirButton.Location = new System.Drawing.Point(380, 0);
+            this.dirButton.Margin = new System.Windows.Forms.Padding(0);
+            this.dirButton.Name = "dirButton";
+            this.dirButton.Size = new System.Drawing.Size(28, 28);
+            this.dirButton.TabIndex = 13;
+            this.dirButton.UseVisualStyleBackColor = true;
+            this.dirButton.Click += new System.EventHandler(this.ChooseDirectoryButton);
             // 
             // dirTextBox
             // 
@@ -449,46 +476,6 @@ namespace PRLauncher_plus.Forms {
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitTSMI);
             // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.Goto_About);
-            // 
-            // banner
-            // 
-            this.banner.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.banner.Image = global::PRLauncher_plus.Properties.Resources.banner;
-            this.banner.Location = new System.Drawing.Point(57, 34);
-            this.banner.Margin = new System.Windows.Forms.Padding(0);
-            this.banner.Name = "banner";
-            this.banner.Size = new System.Drawing.Size(350, 63);
-            this.banner.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.banner.TabIndex = 2;
-            this.banner.TabStop = false;
-            // 
-            // dirButton
-            // 
-            this.dirButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dirButton.BackgroundImage = global::PRLauncher_plus.Properties.Resources.folder_icon;
-            this.dirButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.dirButton.Location = new System.Drawing.Point(380, 0);
-            this.dirButton.Margin = new System.Windows.Forms.Padding(0);
-            this.dirButton.Name = "dirButton";
-            this.dirButton.Size = new System.Drawing.Size(28, 28);
-            this.dirButton.TabIndex = 13;
-            this.dirButton.UseVisualStyleBackColor = true;
-            this.dirButton.Click += new System.EventHandler(this.ChooseDirectoryButton);
-            // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -503,19 +490,19 @@ namespace PRLauncher_plus.Forms {
             this.videoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.displayToolStripMenuItem});
             this.videoToolStripMenuItem.Name = "videoToolStripMenuItem";
-            this.videoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.videoToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.videoToolStripMenuItem.Text = "Video";
             // 
             // displayToolStripMenuItem
             // 
             this.displayToolStripMenuItem.Name = "displayToolStripMenuItem";
-            this.displayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.displayToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.displayToolStripMenuItem.Text = "Display";
             // 
             // recordingOptionsToolStripMenuItem2
             // 
             this.recordingOptionsToolStripMenuItem2.Name = "recordingOptionsToolStripMenuItem2";
-            this.recordingOptionsToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.recordingOptionsToolStripMenuItem2.Size = new System.Drawing.Size(173, 22);
             this.recordingOptionsToolStripMenuItem2.Text = "Recording Options";
             // 
             // demosToolStripMenuItem
@@ -532,26 +519,55 @@ namespace PRLauncher_plus.Forms {
             // playDemoFileToolStripMenuItem
             // 
             this.playDemoFileToolStripMenuItem.Name = "playDemoFileToolStripMenuItem";
-            this.playDemoFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.playDemoFileToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.playDemoFileToolStripMenuItem.Text = "Play Demo File";
             // 
             // recordDemoToolStripMenuItem
             // 
             this.recordDemoToolStripMenuItem.CheckOnClick = true;
             this.recordDemoToolStripMenuItem.Name = "recordDemoToolStripMenuItem";
-            this.recordDemoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.recordDemoToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.recordDemoToolStripMenuItem.Text = "Record Demo";
-            // 
-            // recordingOptionsToolStripMenuItem
-            // 
-            this.recordingOptionsToolStripMenuItem.Name = "recordingOptionsToolStripMenuItem";
-            this.recordingOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.recordingOptionsToolStripMenuItem.Text = "Recording Options";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(170, 6);
+            // 
+            // recordingOptionsToolStripMenuItem
+            // 
+            this.recordingOptionsToolStripMenuItem.Name = "recordingOptionsToolStripMenuItem";
+            this.recordingOptionsToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.recordingOptionsToolStripMenuItem.Text = "Recording Options";
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.compatibilityHintToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.Goto_About);
+            // 
+            // compatibilityHintToolStripMenuItem
+            // 
+            this.compatibilityHintToolStripMenuItem.Name = "compatibilityHintToolStripMenuItem";
+            this.compatibilityHintToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.compatibilityHintToolStripMenuItem.Text = "Compatibility Hint";
+            this.compatibilityHintToolStripMenuItem.Click += new System.EventHandler(this.Goto_CompHint);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
             // 
             // MainForm
             // 
@@ -569,6 +585,7 @@ namespace PRLauncher_plus.Forms {
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Exit);
             this.mainTLP.ResumeLayout(false);
             this.mainTLP.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.banner)).EndInit();
             this.innerTLP.ResumeLayout(false);
             this.innerTLP.PerformLayout();
             this.dirGroup.ResumeLayout(false);
@@ -585,7 +602,6 @@ namespace PRLauncher_plus.Forms {
             this.launchTPL3.PerformLayout();
             this.mainMenuStrip.ResumeLayout(false);
             this.mainMenuStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.banner)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -632,6 +648,8 @@ namespace PRLauncher_plus.Forms {
         private ToolStripMenuItem recordDemoToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem recordingOptionsToolStripMenuItem;
+        private ToolStripMenuItem compatibilityHintToolStripMenuItem;
+        private ToolStripSeparator toolStripSeparator3;
     }
 }
 
