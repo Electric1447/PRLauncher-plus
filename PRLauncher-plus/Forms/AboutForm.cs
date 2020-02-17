@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace PRLauncher_plus.Forms {
@@ -6,7 +7,7 @@ namespace PRLauncher_plus.Forms {
 
         public AboutForm () {
             InitializeComponent();
-            aboutLabel5.Text = Program.VERSION;
+            aboutLabel5.Text = Program.Version;
         }
 
         private void Close (object sender, EventArgs e) {
@@ -14,7 +15,8 @@ namespace PRLauncher_plus.Forms {
         }
 
         private void Goto_Github (object sender, EventArgs e) {
-            System.Diagnostics.Process.Start("http://github.com/Electric1447/prlauncher-plus");
+            Process.Start("http://github.com/Electric1447/prlauncher-plus");
         }
+
     }
 }

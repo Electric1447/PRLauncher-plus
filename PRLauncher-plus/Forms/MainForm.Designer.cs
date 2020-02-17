@@ -54,6 +54,9 @@ namespace PRLauncher_plus.Forms {
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveCurrentConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.defaultConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.saveConfigToINIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadConfigFromINIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,9 +69,9 @@ namespace PRLauncher_plus.Forms {
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.recordingOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compatibilityHintToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainTLP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.banner)).BeginInit();
             this.innerTLP.SuspendLayout();
@@ -444,6 +447,9 @@ namespace PRLauncher_plus.Forms {
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saveCurrentConfigToolStripMenuItem,
             this.defaultConfigToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.saveConfigToINIToolStripMenuItem,
+            this.loadConfigFromINIToolStripMenuItem,
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -453,26 +459,45 @@ namespace PRLauncher_plus.Forms {
             // saveCurrentConfigToolStripMenuItem
             // 
             this.saveCurrentConfigToolStripMenuItem.Name = "saveCurrentConfigToolStripMenuItem";
-            this.saveCurrentConfigToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveCurrentConfigToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.saveCurrentConfigToolStripMenuItem.Text = "Save Current Config";
             this.saveCurrentConfigToolStripMenuItem.Click += new System.EventHandler(this.SaveCurrentConfig);
             // 
             // defaultConfigToolStripMenuItem
             // 
             this.defaultConfigToolStripMenuItem.Name = "defaultConfigToolStripMenuItem";
-            this.defaultConfigToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.defaultConfigToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.defaultConfigToolStripMenuItem.Text = "Default Config";
             this.defaultConfigToolStripMenuItem.Click += new System.EventHandler(this.ResetConfigPrompte);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(183, 6);
+            // 
+            // saveConfigToINIToolStripMenuItem
+            // 
+            this.saveConfigToINIToolStripMenuItem.Name = "saveConfigToINIToolStripMenuItem";
+            this.saveConfigToINIToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.saveConfigToINIToolStripMenuItem.Text = "Save Config to INI";
+            this.saveConfigToINIToolStripMenuItem.Click += new System.EventHandler(this.SaveToINI);
+            // 
+            // loadConfigFromINIToolStripMenuItem
+            // 
+            this.loadConfigFromINIToolStripMenuItem.Name = "loadConfigFromINIToolStripMenuItem";
+            this.loadConfigFromINIToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.loadConfigFromINIToolStripMenuItem.Text = "Load Config from INI";
+            this.loadConfigFromINIToolStripMenuItem.Click += new System.EventHandler(this.LoadFromINI);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(183, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitTSMI);
             // 
@@ -550,24 +575,24 @@ namespace PRLauncher_plus.Forms {
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.Goto_About);
-            // 
             // compatibilityHintToolStripMenuItem
             // 
             this.compatibilityHintToolStripMenuItem.Name = "compatibilityHintToolStripMenuItem";
-            this.compatibilityHintToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.compatibilityHintToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.compatibilityHintToolStripMenuItem.Text = "Compatibility Hint";
             this.compatibilityHintToolStripMenuItem.Click += new System.EventHandler(this.Goto_CompHint);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(169, 6);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.Goto_About);
             // 
             // MainForm
             // 
@@ -650,6 +675,9 @@ namespace PRLauncher_plus.Forms {
         private ToolStripMenuItem recordingOptionsToolStripMenuItem;
         private ToolStripMenuItem compatibilityHintToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator3;
+        private ToolStripSeparator toolStripSeparator4;
+        private ToolStripMenuItem saveConfigToINIToolStripMenuItem;
+        private ToolStripMenuItem loadConfigFromINIToolStripMenuItem;
     }
 }
 
