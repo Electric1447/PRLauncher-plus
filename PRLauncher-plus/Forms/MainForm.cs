@@ -60,39 +60,49 @@ namespace PRLauncher_plus.Forms {
             RefreshDiffList();
         }
 
-        private void Run (object sender, EventArgs e) {
+        private void RunButton (object sender, EventArgs e) {
 
             Check_cWarp();
-            string diff_temp = "", warp_temp = cWarp;
 
-            if (cDifficulty != 0)
-                diff_temp = "-skill " + cDifficulty;
+            string diff_temp = (cDifficulty != 0) ? ("-skill " + cDifficulty) : "";
+            string warp_temp = !cWarp.Equals("") ? ("-warp " + cWarp) : cWarp;
 
-            if (warp_temp != "")
-                warp_temp = "-warp " + warp_temp;
+            string launchArguments = string.Format(" -iwad {0} -complevel {1} {2} {3} {4}",
+                iwads.GetWadsFilename()[cIWad], (cComplevel - 1), warp_temp, diff_temp, argTextBox.Text);
+
+            switch (Run(folderPath, prboomExec[cExecutable], launchArguments)) {
+                case 1:
+                    MessageBox.Show("Please insert the path to your PRBoom+ folder", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 2:
+                    MessageBox.Show("Can't find " + prboomExec[cExecutable], "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 3:
+                    Console.WriteLine("Error launching PRBoom+/GLBoom+");
+                    break;
+            }
+
+            SaveSettings();
+        }
+
+        private int Run (string execFolderPath, string execFilePath, string args) {
 
             try {
-                if (folderPath.Equals("")) {
-                    // The Folder Path is Empty
-                    MessageBox.Show("Please insert the path to your PRBoom+ folder", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else if (!File.Exists(folderPath + @"\" + prboomExec[cExecutable])) {
-                    // The Executable does not exist/isn't found
-                    MessageBox.Show("Can't find " + prboomExec[cExecutable], "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else {
-                    string launchArguments = string.Format(" -iwad {0} -complevel {1} {2} {3} {4}",
-                        iwads.GetWadsFilename()[cIWad], (cComplevel - 1), warp_temp, diff_temp, argTextBox.Text);
-                    
+                if (execFolderPath.Equals("")) {
+                    return 1; // The Folder Path is Empty
+                } else if (!File.Exists(execFolderPath + @"\" + execFilePath)) {
+                    return 2; // The Executable does not exist/isn't found
+                } else {
+                    // Run the exectuable
                     ProcessStartInfo startInfo = new ProcessStartInfo {
-                        FileName = folderPath + @"\" + prboomExec[cExecutable],
-                        Arguments = launchArguments
+                        FileName = execFolderPath + @"\" + execFilePath,
+                        Arguments = args
                     };
                     Process.Start(startInfo);
                 }
-            } catch { Console.WriteLine("Error launching PRBoom+/GLBoom+"); }
+            } catch { return 3; }
 
-            SaveSettings();
+            return 0;
         }
 
         private void ChooseDirectoryButton (object sender, EventArgs e) {
@@ -103,9 +113,9 @@ namespace PRLauncher_plus.Forms {
                 folderPath = folderBD.SelectedPath;
                 Settings.Default.folderPathPref = folderPath;
                 dirTextBox.Text = folderPath;
+                Settings.Default.Save();
             }
-
-            Settings.Default.Save();
+            
         }
 
         #region Refresh misc functions
@@ -150,7 +160,7 @@ namespace PRLauncher_plus.Forms {
             levelComboBox.Items.Clear();
             levelComboBox.Items.Add("CUSTOM");
 
-            if (iwads.IsKnown(cIWad) && folderPath != "")
+            if (iwads.IsKnown(cIWad) && !folderPath.Equals(""))
                 levelComboBox.Items.AddRange(Levels.GetLevelList(iwads.GetWadsFilename()[cIWad]));
 
             if (cWarpIndex >= levelComboBox.Items.Count)
@@ -164,10 +174,8 @@ namespace PRLauncher_plus.Forms {
             diffComboBox.Items.Clear();
             diffComboBox.Items.Add("None (select ingame)");
 
-            if (iwads.IsKnown(cIWad) && folderPath != "")
-                diffComboBox.Items.AddRange(Difficulty.GetDifflvlList(iwads.GetWadsFilename()[cIWad]));
-            else
-                diffComboBox.Items.AddRange(Difficulty.GetDifflvlList("doom.wad"));
+            diffComboBox.Items.AddRange(Difficulty.GetDifflvlList((iwads.IsKnown(cIWad) && !folderPath.Equals(""))
+                ? iwads.GetWadsFilename()[cIWad] : "doom.wad"));
 
             diffComboBox.SelectedIndex = cDifficulty;
         }
@@ -283,7 +291,7 @@ namespace PRLauncher_plus.Forms {
             OpenFileDialog inif_ofd = new OpenFileDialog {
                 InitialDirectory = folderPath,
                 Title = "Save Configaration to an INI file.",
-                Filter = "Configaration Files|*.ini",
+                Filter = "INI Configaration Files (*.ini)|*.ini|All files (*.*)|*.*",
                 CheckPathExists = true,
                 CheckFileExists = true,
                 DefaultExt = "ini"
@@ -301,6 +309,37 @@ namespace PRLauncher_plus.Forms {
                 Settings.Default.argPref = inif.Read(INIHeader, "f_args");
                 Settings.Default.Save();
                 Application.Restart();
+            }
+        }
+
+        #endregion
+
+        #region Demo functions
+
+        private void PlayDemo (object sender, EventArgs e) {
+
+            OpenFileDialog lmp_ofd = new OpenFileDialog {
+                InitialDirectory = folderPath,
+                Title = "demo",
+                Filter = "Doom Demo Files (*.lmp)|*.lmp|All files (*.*)|*.*",
+                CheckPathExists = true,
+                CheckFileExists = true,
+                DefaultExt = "lmp"
+            };
+
+            if (lmp_ofd.ShowDialog() == DialogResult.OK) {
+                string args = " -playdemo " + lmp_ofd.FileName;
+                switch (Run(folderPath, prboomExec[cExecutable], args)) {
+                    case 1:
+                        MessageBox.Show("Please insert the path to your PRBoom+ folder first", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    case 2:
+                        MessageBox.Show("Can't find " + prboomExec[cExecutable], "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    case 3:
+                        Console.WriteLine("Error launching PRBoom+/GLBoom+/Demo");
+                        break;
+                }
             }
         }
 
@@ -341,10 +380,7 @@ namespace PRLauncher_plus.Forms {
         #endregion
 
         private void Check_cWarp () {
-            if (cWarpIndex == 0)
-                cWarp = levelTextBox.Text;
-            else
-                cWarp = Levels.ParseLevel(iwads.GetWadsFilename()[cIWad], cWarpIndex - 1);
+            cWarp = ((cWarpIndex == 0) ? levelTextBox.Text : Levels.ParseLevel(iwads.GetWadsFilename()[cIWad], cWarpIndex - 1));
         }
 
     }

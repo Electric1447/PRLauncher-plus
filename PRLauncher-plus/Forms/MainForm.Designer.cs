@@ -119,7 +119,7 @@ namespace PRLauncher_plus.Forms {
             this.runButton.TabIndex = 4;
             this.runButton.Text = "Launch";
             this.runButton.UseVisualStyleBackColor = true;
-            this.runButton.Click += new System.EventHandler(this.Run);
+            this.runButton.Click += new System.EventHandler(this.RunButton);
             // 
             // banner
             // 
@@ -544,25 +544,26 @@ namespace PRLauncher_plus.Forms {
             // playDemoFileToolStripMenuItem
             // 
             this.playDemoFileToolStripMenuItem.Name = "playDemoFileToolStripMenuItem";
-            this.playDemoFileToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.playDemoFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.playDemoFileToolStripMenuItem.Text = "Play Demo File";
+            this.playDemoFileToolStripMenuItem.Click += new System.EventHandler(this.PlayDemo);
             // 
             // recordDemoToolStripMenuItem
             // 
             this.recordDemoToolStripMenuItem.CheckOnClick = true;
             this.recordDemoToolStripMenuItem.Name = "recordDemoToolStripMenuItem";
-            this.recordDemoToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.recordDemoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.recordDemoToolStripMenuItem.Text = "Record Demo";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(170, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // recordingOptionsToolStripMenuItem
             // 
             this.recordingOptionsToolStripMenuItem.Name = "recordingOptionsToolStripMenuItem";
-            this.recordingOptionsToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.recordingOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.recordingOptionsToolStripMenuItem.Text = "Recording Options";
             // 
             // helpToolStripMenuItem
