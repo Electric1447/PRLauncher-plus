@@ -52,5 +52,19 @@ namespace PRLauncher_plus.Objects {
             return "";
         }
 
+        public static string ReverseParseLevel (string wfn, string wd) {
+            int m;
+
+            if (DetectIWadType(wfn) == 0 || DetectIWadType(wfn) == 1) {
+                if (int.TryParse(wd[0].ToString(), out int e) && int.TryParse(wd[2].ToString(), out m))
+                    return "E" + e + "M" + m;
+            } else if (DetectIWadType(wfn) == 2) {
+                if (int.TryParse(wd, out m))
+                    return "MAP" + m.ToString().PadLeft(2, '0');
+            }
+
+            return "";
+        }
+
     }
 }

@@ -66,9 +66,22 @@ namespace PRLauncher_plus.Forms {
 
             string diff_temp = (cDifficulty != 0) ? ("-skill " + cDifficulty) : "";
             string warp_temp = !cWarp.Equals("") ? ("-warp " + cWarp) : cWarp;
+            string dfnh = "";
 
-            string launchArguments = string.Format(" -iwad {0} -complevel {1} {2} {3} {4}",
-                iwads.GetWadsFilename()[cIWad], (cComplevel - 1), warp_temp, diff_temp, argTextBox.Text);
+            if (recordDemoToolStripMenuItem.Checked && !argTextBox.Text.Contains("-record")) {
+                int demo_count = 0;
+                dfnh = (!cWarp.Equals("") ? ("d_" + Levels.ReverseParseLevel(iwads.GetWadsFilename()[cIWad], cWarp).ToLower() + "_") : "demo_");
+
+                while (File.Exists(folderPath + @"\" + dfnh + demo_count.ToString().PadLeft(2, '0') + ".lmp")) {
+                    demo_count++;
+                }
+
+                dfnh += demo_count.ToString().PadLeft(2, '0');
+                dfnh = "-record " + dfnh;
+            }
+
+            string launchArguments = string.Format(" -iwad {0} -complevel {1} {2} {3} {4} {5}",
+                iwads.GetWadsFilename()[cIWad], (cComplevel - 1), warp_temp, diff_temp, argTextBox.Text, dfnh);
 
             switch (Run(folderPath, prboomExec[cExecutable], launchArguments)) {
                 case 1:
