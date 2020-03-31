@@ -64,6 +64,9 @@ namespace PRLauncher_plus.Forms {
             RefreshDiffList();
         }
 
+        /// <summary>
+        /// Launches PRBoom+. Triggered by the 'Launch' button.
+        /// </summary>
         private void RunButton (object sender, EventArgs e) {
 
             Check_cWarp();
@@ -103,6 +106,13 @@ namespace PRLauncher_plus.Forms {
             SaveSettings();
         }
 
+        /// <summary>
+        /// Runs an executable.
+        /// </summary>
+        /// <param name="execFolderPath">The executables' folder</param>
+        /// <param name="execFilePath">The executables' name</param>
+        /// <param name="args">Launch arguments</param>
+        /// <returns>returns 0 if successful</returns>
         private int Run (string execFolderPath, string execFilePath, string args) {
 
             try {
@@ -123,6 +133,9 @@ namespace PRLauncher_plus.Forms {
             return 0;
         }
 
+        /// <summary>
+        /// Open the folder browser dialog for the PRBoom+ directory.
+        /// </summary>
         private void ChooseDirectoryButton (object sender, EventArgs e) {
             VistaFolderBrowserDialog folderBD = new VistaFolderBrowserDialog();
 
@@ -203,7 +216,9 @@ namespace PRLauncher_plus.Forms {
         /// The code for all Comboboxes when they detect that their index was changed.
         /// </summary>
 
+        /// <summary>
         /// IWad Combobox
+        /// </summary>
         private void iwadCB_IndexChanged (object sender, EventArgs e) {
             cIWad = iwadComboBox.SelectedIndex;
 
@@ -218,21 +233,27 @@ namespace PRLauncher_plus.Forms {
             Settings.Default.Save();
         }
 
+        /// <summary>
         /// Complevel Combobox
+        /// </summary>
         private void compCB_IndexChanged (object sender, EventArgs e) {
             cComplevel = compComboBox.SelectedIndex;
             Settings.Default.cComplevelPref = cComplevel;
             Settings.Default.Save();
         }
 
+        /// <summary>
         /// Difficulty Combobox
+        /// </summary>
         private void diffCB_IndexChanged (object sender, EventArgs e) {
             cDifficulty = diffComboBox.SelectedIndex;
             Settings.Default.cDifficultyPref = cDifficulty;
             Settings.Default.Save();
         }
 
+        /// <summary>
         /// Level Combobox
+        /// </summary>
         private void levelCB_IndexChanged (object sender, EventArgs e) {
             levelTextBox.Enabled = (levelComboBox.SelectedIndex == 0);
             cWarpIndex = levelComboBox.SelectedIndex;
@@ -249,12 +270,16 @@ namespace PRLauncher_plus.Forms {
         /// Save, Load & Reset Configaration functions.
         /// </summary>
 
+        /// <summary>
         /// Save current config to Settings. (ToolStripMenuItem)
+        /// </summary>
         private void SaveCurrentConfig (object sender, EventArgs e) {
             SaveSettings();
         }
 
+        /// <summary>
         /// Save current config to Settings.
+        /// </summary>
         private void SaveSettings () {
             Check_cWarp();
             Settings.Default.warpPref = cWarp;
@@ -263,7 +288,9 @@ namespace PRLauncher_plus.Forms {
             Console.WriteLine("Settings have been saved!");
         }
 
+        /// <summary>
         /// Reset current config. (ToolStripMenuItem)
+        /// </summary>
         private void ResetConfigPrompte (object sender, EventArgs e) {
             DialogResult result = MessageBox.Show("Are you sure you want to reset the current configaration?", "Are you sure?",
                 MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3);
@@ -274,7 +301,9 @@ namespace PRLauncher_plus.Forms {
             }
         }
 
+        /// <summary>
         /// Save current config to an INI file. (ToolStripMenuItem)
+        /// </summary>
         private void SaveToINI (object sender, EventArgs e) {
             const string INIHeader = "Config";
 
@@ -302,7 +331,9 @@ namespace PRLauncher_plus.Forms {
             }
         }
 
+        /// <summary>
         /// Load config from an INI file. (ToolStripMenuItem)
+        /// </summary>
         private void LoadFromINI (object sender, EventArgs e) {
             const string INIHeader = "Config";
 
@@ -336,6 +367,9 @@ namespace PRLauncher_plus.Forms {
 
         #region Demo functions
 
+        /// <summary>
+        /// Plays a Demo file
+        /// </summary>
         private void PlayDemo (object sender, EventArgs e) {
 
             OpenFileDialog lmp_ofd = new OpenFileDialog {

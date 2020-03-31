@@ -17,7 +17,7 @@ namespace PRLauncher_plus {
                 if (fvi.FilePrivatePart != 0)
                     verstr += ("." + fvi.FilePrivatePart);
 
-                return verstr + "-beta3";
+                return verstr;
             }
         }
 

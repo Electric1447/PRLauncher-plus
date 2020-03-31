@@ -1,14 +1,7 @@
 ﻿using Ookii.Dialogs.WinForms;
 using PRLauncher_plus.Properties;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PRLauncher_plus.Forms {
@@ -42,10 +35,16 @@ namespace PRLauncher_plus.Forms {
 
         #region Bottom action Buttons region
 
+        /// <summary>
+        /// Exit without saving.
+        /// </summary>
         private void Discard (object sender, EventArgs e) {
             Close();
         }
 
+        /// <summary>
+        /// Saves all recording preferences.
+        /// </summary>
         private void Save (object sender, EventArgs e) {
             if (Directory.Exists(dirTextBox.Text))
                 Settings.Default.demoFolderPathPref = dirTextBox.Text;
@@ -55,6 +54,9 @@ namespace PRLauncher_plus.Forms {
             Close();
         }
 
+        /// <summary>
+        /// Resets all recording preferences.
+        /// </summary>
         private void ResetPrompte (object sender, EventArgs e) {
             DialogResult result = MessageBox.Show("Are you sure you want to reset?", "Are you sure?",
                 MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3);
