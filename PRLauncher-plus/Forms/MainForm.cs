@@ -1,4 +1,5 @@
-﻿using PRLauncher_plus.Objects;
+﻿using Ookii.Dialogs.WinForms;
+using PRLauncher_plus.Objects;
 using PRLauncher_plus.Properties;
 using PRLauncher_plus.Util;
 using System;
@@ -23,7 +24,7 @@ namespace PRLauncher_plus.Forms {
 
         WadList iwads = new WadList();
 
-        string folderPath = "", cWarp = "";
+        string folderPath = "", cWarp = "", demoFolderPath = "";
         int cExecutable = 0, cIWad = 0, cComplevel = 0, cDifficulty = 0, cWarpIndex = 0;
 
         public MainForm () {
@@ -31,6 +32,7 @@ namespace PRLauncher_plus.Forms {
             Text = "PRLauncher+ " + Program.Version;
 
             folderPath = Settings.Default.folderPathPref;
+            demoFolderPath = Settings.Default.demoFolderPathPref;
             cWarp = Settings.Default.warpPref;
             cExecutable = Settings.Default.cExecutablePref;
             cIWad = Settings.Default.cIWadPref;
@@ -40,6 +42,8 @@ namespace PRLauncher_plus.Forms {
 
             dirTextBox.Text = folderPath;
             argTextBox.Text = Settings.Default.argPref;
+
+            recordDemoToolStripMenuItem.Checked = Settings.Default.recordPref;
 
             // Checks if PRLauncher-plus.exe is in the PRBoom+'s directory.
             // And if so, it changes the folder path to be PRLauncher-plus.exe's directory.
@@ -66,8 +70,9 @@ namespace PRLauncher_plus.Forms {
 
             string diff_temp = (cDifficulty != 0) ? ("-skill " + cDifficulty) : "";
             string warp_temp = !cWarp.Equals("") ? ("-warp " + cWarp) : cWarp;
-            string dfnh = "";
+            string dfnh = "", dfp = !demoFolderPath.Equals("") ? demoFolderPath : folderPath;
 
+            // Recording options.
             if (recordDemoToolStripMenuItem.Checked && !argTextBox.Text.Contains("-record")) {
                 int demo_count = 0;
                 dfnh = (!cWarp.Equals("") ? ("d_" + Levels.ReverseParseLevel(iwads.GetWadsFilename()[cIWad], cWarp).ToLower() + "_") : "demo_");
@@ -77,7 +82,7 @@ namespace PRLauncher_plus.Forms {
                 }
 
                 dfnh += demo_count.ToString().PadLeft(2, '0');
-                dfnh = "-record " + dfnh;
+                dfnh = "-record " + dfp + @"\" + dfnh;
             }
 
             string launchArguments = string.Format(" -iwad {0} -complevel {1} {2} {3} {4} {5}",
@@ -119,16 +124,14 @@ namespace PRLauncher_plus.Forms {
         }
 
         private void ChooseDirectoryButton (object sender, EventArgs e) {
-
-            FolderBrowserDialog folderBD = new FolderBrowserDialog();
+            VistaFolderBrowserDialog folderBD = new VistaFolderBrowserDialog();
 
             if (folderBD.ShowDialog() == DialogResult.OK) {
                 folderPath = folderBD.SelectedPath;
-                Settings.Default.folderPathPref = folderPath;
                 dirTextBox.Text = folderPath;
+                Settings.Default.folderPathPref = folderPath;
                 Settings.Default.Save();
             }
-            
         }
 
         #region Refresh misc functions
@@ -294,6 +297,8 @@ namespace PRLauncher_plus.Forms {
                 inif.Write(INIHeader, "f_difficulty", cDifficulty.ToString());
                 inif.Write(INIHeader, "f_warpIndex", cWarpIndex.ToString());
                 inif.Write(INIHeader, "f_args", argTextBox.Text);
+                inif.Write(INIHeader, "f_recordDemos", Settings.Default.recordPref.ToString().ToLower());
+                inif.Write(INIHeader, "f_demoFolderPath", demoFolderPath);
             }
         }
 
@@ -320,6 +325,8 @@ namespace PRLauncher_plus.Forms {
                 Settings.Default.cDifficultyPref = string.IsNullOrEmpty(inif.Read(INIHeader, "f_difficulty")) ? 0 : int.Parse(inif.Read(INIHeader, "f_difficulty"));
                 Settings.Default.cWarpIndexPref = string.IsNullOrEmpty(inif.Read(INIHeader, "f_warpIndex")) ? 0 : int.Parse(inif.Read(INIHeader, "f_warpIndex"));
                 Settings.Default.argPref = inif.Read(INIHeader, "f_args");
+                Settings.Default.recordPref = inif.Read(INIHeader, "f_recordDemos").ToLower().Equals("true");
+                Settings.Default.demoFolderPathPref = inif.Read(INIHeader, "f_demoFolderPath");
                 Settings.Default.Save();
                 Application.Restart();
             }
@@ -373,6 +380,12 @@ namespace PRLauncher_plus.Forms {
             chf.Show();
         }
 
+        private void Goto_Recording (object sender, EventArgs e) {
+            RecordingForm rf = new RecordingForm();
+            rf.ShowDialog();
+            recordDemoToolStripMenuItem.Checked = Settings.Default.recordPref;
+        }
+
         #endregion
 
         #region Exit functions
@@ -393,7 +406,7 @@ namespace PRLauncher_plus.Forms {
         #endregion
 
         private void Check_cWarp () {
-            cWarp = ((cWarpIndex == 0) ? levelTextBox.Text : Levels.ParseLevel(iwads.GetWadsFilename()[cIWad], cWarpIndex - 1));
+            cWarp = (cWarpIndex == 0) ? levelTextBox.Text : Levels.ParseLevel(iwads.GetWadsFilename()[cIWad], cWarpIndex - 1);
         }
 
     }

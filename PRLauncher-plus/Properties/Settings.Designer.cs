@@ -118,5 +118,29 @@ namespace PRLauncher_plus.Properties {
                 this["argPref"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool recordPref {
+            get {
+                return ((bool)(this["recordPref"]));
+            }
+            set {
+                this["recordPref"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string demoFolderPathPref {
+            get {
+                return ((string)(this["demoFolderPathPref"]));
+            }
+            set {
+                this["demoFolderPathPref"] = value;
+            }
+        }
     }
 }

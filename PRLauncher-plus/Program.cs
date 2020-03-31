@@ -7,7 +7,6 @@ using System.Windows.Forms;
 namespace PRLauncher_plus {
     static class Program {
 
-
         public static string Version {
             get {
                 Assembly asm = Assembly.GetExecutingAssembly();
@@ -18,15 +17,16 @@ namespace PRLauncher_plus {
                 if (fvi.FilePrivatePart != 0)
                     verstr += ("." + fvi.FilePrivatePart);
 
-                return verstr + "-beta2";
+                return verstr += "-beta3";
             }
         }
 
         [STAThread]
-        static void Main() {
+        static void Main () {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
         }
+
     }
 }

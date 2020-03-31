@@ -7,7 +7,7 @@ namespace PRLauncher_plus.Forms {
 
         public AboutForm () {
             InitializeComponent();
-            aboutLabel5.Text = Program.Version;
+            vLabel.Text = "PRLauncher+ Version " + Program.Version;
         }
 
         private void Close (object sender, EventArgs e) {

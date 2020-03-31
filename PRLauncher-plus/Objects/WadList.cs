@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace PRLauncher_plus {
+namespace PRLauncher_plus.Objects {
 
     class WadList {
 
@@ -13,7 +13,6 @@ namespace PRLauncher_plus {
         private string[] wadsTitle;
 
         public WadList () {
-
         }
 
         public void DetectWads (string path) {
@@ -84,22 +83,16 @@ namespace PRLauncher_plus {
 
         // Returns the wad full title (title + filename)
         public string[] GetWadsFullTitle () {
-
             string[] str = new string[wadsFilename.Length];
 
-            for (int i = 0; i < str.Length; i++) {
-                if (IsKnown(i))
-                    str[i] = wadsTitle[i] + " (" + wadsFilename[i] + ")";
-                else
-                    str[i] = wadsTitle[i];
-            }
+            for (int i = 0; i < str.Length; i++)
+                str[i] = IsKnown(i) ? wadsTitle[i] : wadsTitle[i] + " (" + wadsFilename[i] + ")";
 
             return str;
         }
 
         // Returns if wad is known (in the database)
         public bool IsKnown (int index) {
-
             if (wadsFilename == null)
                 return false;
 

@@ -565,6 +565,7 @@ namespace PRLauncher_plus.Forms {
             this.recordingOptionsToolStripMenuItem.Name = "recordingOptionsToolStripMenuItem";
             this.recordingOptionsToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.recordingOptionsToolStripMenuItem.Text = "Recording Options";
+            this.recordingOptionsToolStripMenuItem.Click += new System.EventHandler(this.Goto_Recording);
             // 
             // helpToolStripMenuItem
             // 
@@ -607,7 +608,6 @@ namespace PRLauncher_plus.Forms {
             this.MaximumSize = new System.Drawing.Size(720, 960);
             this.MinimumSize = new System.Drawing.Size(480, 620);
             this.Name = "MainForm";
-            this.Text = "PRLauncher+";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Exit);
             this.mainTLP.ResumeLayout(false);
             this.mainTLP.PerformLayout();

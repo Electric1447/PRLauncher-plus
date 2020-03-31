@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PRLauncher_plus.Objects {
+﻿namespace PRLauncher_plus.Objects {
     class Levels {
 
         private readonly static string[] doom_lvlArr = new string[] {
