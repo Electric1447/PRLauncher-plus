@@ -9,5 +9,3 @@ This a simple GUI launcher for PRBoom+ & GLBoom+ written in C# using .NET 4.7.1;
  ### Known Issues:
  - ?
  
- ### TODO:
- - Record demos options.
