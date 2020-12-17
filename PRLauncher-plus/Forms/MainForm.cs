@@ -70,6 +70,7 @@ namespace PRLauncher_plus.Forms {
         private void RunButton (object sender, EventArgs e) {
 
             Check_cWarp();
+            demoFolderPath = Settings.Default.demoFolderPathPref;
 
             string diff_temp = (cDifficulty != 0) ? ("-skill " + cDifficulty) : "";
             string warp_temp = !cWarp.Equals("") ? ("-warp " + cWarp) : cWarp;

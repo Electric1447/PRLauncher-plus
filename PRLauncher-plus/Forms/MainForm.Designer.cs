@@ -529,6 +529,7 @@ namespace PRLauncher_plus.Forms {
             this.recordingOptionsToolStripMenuItem2.Name = "recordingOptionsToolStripMenuItem2";
             this.recordingOptionsToolStripMenuItem2.Size = new System.Drawing.Size(173, 22);
             this.recordingOptionsToolStripMenuItem2.Text = "Recording Options";
+            this.recordingOptionsToolStripMenuItem2.Click += new System.EventHandler(this.Goto_Recording);
             // 
             // demosToolStripMenuItem
             // 
